@@ -25,11 +25,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - userName: q215613905
+          - userName: sl5647
             repoName: TVBoxOS
             branchName: main
-          - userName: takagen99
-            repoName: Box
+          - userName: sl5647
+            repoName: BearTV
             branchName: main
     steps:
       - name: Checkout
@@ -70,9 +70,9 @@ jobs:
           sed -i "/versionName/s#[0-9a-zA-Z_\.\'\"-]\+\$#\'${{ env.tag }}\'#" app/build.gradle
           echo 'crosswalk源，防挂'
           if grep -q 'crosswalk' build.gradle; then
-            sed -i "/crosswalk/a\        maven { url 'https://github.com/sl5647/TVBoxOSC-1' }" build.gradle
+            sed -i "/crosswalk/a\        maven { url 'https://o0halflife0o.github.io/crosswalk/releases/crosswalk/android/maven2' }" build.gradle
           else
-            sed -i "/jitpack.io/a\        maven { url 'https://github.com/sl5647/TVBoxOSC-1' }" build.gradle
+            sed -i "/jitpack.io/a\        maven { url 'https://o0halflife0o.github.io/crosswalk/releases/crosswalk/android/maven2' }" build.gradle
           fi
       - name: Option For Test
         if: ${{ inputs.testOption }}
